@@ -1,6 +1,7 @@
 package expression;
 
 import org.junit.Test;
+import printer.InfixPrinter;
 import static org.junit.Assert.*;
 import environment.UnboundVariable;
 
@@ -13,7 +14,7 @@ public class VariableTests extends AtomicTests<Variable> {
 
 	@Override
 	public void testEvalEquals10() throws UnboundVariable {
-		environment.setValue(expressionEquals10, new Literal(10));
+		env.setValue(expressionEquals10, new Literal(10));
 		super.testEvalEquals10();
 	}
 
@@ -24,6 +25,7 @@ public class VariableTests extends AtomicTests<Variable> {
 
 	@Override
 	public void testPrint() {
-		assertEquals("x", expressionEquals10.print());
+		InfixPrinter printer = new InfixPrinter();
+		assertEquals("x", expressionEquals10.print(printer));
 	}
 }

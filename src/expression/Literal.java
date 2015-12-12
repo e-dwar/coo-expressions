@@ -1,6 +1,7 @@
 package expression;
 
 import environment.Environment;
+import evaluator.Evaluator;
 
 public class Literal extends Atomic {
 
@@ -13,14 +14,12 @@ public class Literal extends Atomic {
 	public int getValue() {
 		return value;
 	}
-
-	@Override
-	public String print() {
+	
+	public String toString() {
 		return value + "";
 	}
 
-	@Override
-	public int eval(Environment environment) {
-		return value;
+	public <E extends Evaluator> int eval(E evaluator, Environment env) {
+		return evaluator.visit(this, env);
 	}
 }

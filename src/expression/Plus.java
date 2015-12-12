@@ -1,8 +1,5 @@
 package expression;
 
-import environment.Environment;
-import environment.UnboundVariable;
-
 public class Plus extends Binary {
 
 	public Plus(Expression operand1, Expression operand2) {
@@ -11,8 +8,7 @@ public class Plus extends Binary {
 	}
 
 	@Override
-	public int eval(Environment environment) throws UnboundVariable {
-		return operand1.eval(environment) + operand2.eval(environment);
+	public int compute(int x, int y) {
+		return x + y;
 	}
-
 }
