@@ -28,7 +28,6 @@ public class Main {
 		log(e.print(new printer.Infix()) + "	= " + result);
 	}
 	
-	// 4 * (1 + 3) / 2 = 1
 	private static Expression createExpression(Environment env) {
 		Literal one = new Literal(1);
 		Literal two = new Literal(2);
@@ -37,6 +36,7 @@ public class Main {
 		Variable four = new Variable("four");
 		//env.setValue(four, new Literal(4));
 		If si = new If(new Equality(one, two), three, five);
+		// (four * (1 + (if (1 = 2) then 3 else 5))) / 2
 		return new Div(new Mult(four, new Plus(one, si)), two);
 	}
 	
