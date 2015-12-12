@@ -1,6 +1,6 @@
 package environment;
 
-import expression.Variable;
+import expression.atomic.Variable;
 
 public class UnboundVariable extends Exception {
 

@@ -2,8 +2,8 @@ package environment;
 
 import java.util.HashMap;
 import java.util.NoSuchElementException;
-import expression.Literal;
-import expression.Variable;
+import expression.atomic.Literal;
+import expression.atomic.Variable;
 
 public class Environment {
 
