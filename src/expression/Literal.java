@@ -16,8 +16,7 @@ public class Literal extends Atomic {
 
 	@Override
 	public String print() {
-		// TODO Auto-generated method stub
-		return null;
+		return value + "";
 	}
 
 	@Override
