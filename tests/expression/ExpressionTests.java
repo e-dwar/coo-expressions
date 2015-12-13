@@ -9,8 +9,8 @@ import static org.junit.Assert.*;
 public abstract class ExpressionTests<E extends Expression> {
 
 	protected Environment env;
-	protected printer.Infix printer;
-	protected evaluator.Standard evaluator;
+	protected visitor.printer.InfixPrinter printer;
+	protected visitor.evaluator.StandardEvaluator evaluator;
 	protected E expressionEquals10;
 
 	public abstract E createExpressionEquals10();
@@ -18,8 +18,8 @@ public abstract class ExpressionTests<E extends Expression> {
 	@Before
 	public void setUp() {
 		env = new Environment();
-		printer = new printer.Infix();
-		evaluator = new evaluator.Standard();
+		printer = new visitor.printer.InfixPrinter();
+		evaluator = new visitor.evaluator.StandardEvaluator();
 		expressionEquals10 = createExpressionEquals10();
 	}
 
@@ -34,7 +34,7 @@ public abstract class ExpressionTests<E extends Expression> {
 	public abstract void testPrint();
 
 	@Test
-	public void testEvalEquals10() throws UnboundVariable {
+	public void testEvalEquals10() {
 		assertTrue(10 == expressionEquals10.eval(evaluator, env));
 	}
 }

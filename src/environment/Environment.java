@@ -1,7 +1,6 @@
 package environment;
 
 import java.util.HashMap;
-import java.util.NoSuchElementException;
 import expression.atomic.Literal;
 import expression.atomic.Variable;
 
@@ -17,12 +16,16 @@ public class Environment {
 		vars.put(var, value);
 	}
 
-	public Literal getValue(Variable var) throws UnboundVariable {
-		if (vars.containsKey(var)) {
+	public Literal getValue(Variable var) {
+		if (isBound(var)) {
 			return vars.get(var);
 		} else {
-			throw new UnboundVariable(var);
+			throw new UnboundVariableException(var, this);
 		}
+	}
+
+	public boolean isBound(Variable var) {
+		return vars.containsKey(var);
 	}
 
 	public Variable getVariable(String name) {
@@ -31,6 +34,6 @@ public class Environment {
 				return var;
 			}
 		}
-		throw new NoSuchElementException(name);
+		return null;
 	}
 }

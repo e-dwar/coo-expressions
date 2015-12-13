@@ -2,18 +2,18 @@ package expression.binary;
 
 import static org.junit.Assert.*;
 import expression.ExpressionTests;
-import expression.binary.Binary;
+import expression.binary.BinaryExpression;
 
-public abstract class BinaryTests<E extends Binary> extends ExpressionTests<E> {
+public abstract class BinaryTests<E extends BinaryExpression> extends ExpressionTests<E> {
 
 	@Override
 	public void testPrint() {
 		String x, y, symbol, expected, actual;
 		symbol = expressionEquals10.getSymbol();
-		x = expressionEquals10.getOperand(1).print(printer);
-		y = expressionEquals10.getOperand(2).print(printer);
+		x = expressionEquals10.getLeftOperand().print(printer, env);
+		y = expressionEquals10.getRightOperand().print(printer, env);
 		expected = "(" + x + " " + symbol + " " + y + ")";
-		actual = expressionEquals10.print(printer);
+		actual = expressionEquals10.print(printer, env);
 		assertEquals(expected, actual);
 	}
 }

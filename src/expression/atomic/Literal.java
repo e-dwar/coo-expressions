@@ -1,9 +1,9 @@
 package expression.atomic;
 
+import visitor.Visitor;
 import environment.Environment;
-import evaluator.Standard;
 
-public class Literal extends Atomic {
+public class Literal extends AtomicExpression {
 
 	protected int value;
 
@@ -14,12 +14,9 @@ public class Literal extends Atomic {
 	public int getValue() {
 		return value;
 	}
-	
-	public String toString() {
-		return value + "";
-	}
 
-	public <E extends Standard> int eval(E evaluator, Environment env) {
-		return evaluator.visit(this, env);
+	@Override
+	public void accept(Visitor visitor, Environment env) {
+		visitor.visitLiteral(this, env);
 	}
 }

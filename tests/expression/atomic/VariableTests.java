@@ -2,7 +2,7 @@ package expression.atomic;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-import environment.UnboundVariable;
+import environment.UnboundVariableException;
 import expression.atomic.Literal;
 import expression.atomic.Variable;
 
@@ -14,18 +14,18 @@ public class VariableTests extends AtomicTests<Variable> {
 	}
 
 	@Override
-	public void testEvalEquals10() throws UnboundVariable {
+	public void testEvalEquals10() {
 		env.setValue(expressionEquals10, new Literal(10));
 		super.testEvalEquals10();
 	}
 
-	@Test(expected=UnboundVariable.class)
-	public void testEvalWithUnboundVariable() throws UnboundVariable {
+	@Test(expected = UnboundVariableException.class)
+	public void testEvalWithUnboundVariable() {
 		super.testEvalEquals10();
 	}
 
 	@Override
 	public void testPrint() {
-		assertEquals("x", expressionEquals10.print(printer));
+		assertEquals("x", expressionEquals10.print(printer, env));
 	}
 }

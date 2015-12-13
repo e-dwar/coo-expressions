@@ -12,7 +12,7 @@ public class LiteralTests extends AtomicTests<Literal> {
 
 	@Override
 	public void testPrint() {
-		assertEquals("10", expressionEquals10.print(printer));
+		assertEquals("10", expressionEquals10.print(printer, env));
 	}
 
 }

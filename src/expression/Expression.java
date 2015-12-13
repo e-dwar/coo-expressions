@@ -1,13 +1,21 @@
 package expression;
 
-import printer.Printer;
+import visitor.Visitor;
+import visitor.printer.Printer;
+import visitor.evaluator.StandardEvaluator;
 import environment.Environment;
-import environment.UnboundVariable;
-import evaluator.Standard;
 
 public abstract class Expression {
 
-	public abstract <E extends Standard> int eval(E evaluator, Environment env) throws UnboundVariable;
-	
-	public abstract <P extends Printer> String print(P printer);
+	public abstract void accept(Visitor visitor, Environment env);
+
+	public String print(Printer printer, Environment env) {
+		accept(printer, env);
+		return printer.getResult();
+	}
+
+	public int eval(StandardEvaluator evaluator, Environment env) {
+		accept(evaluator, env);
+		return evaluator.getResult();
+	}
 }

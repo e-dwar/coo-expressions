@@ -1,6 +1,6 @@
 package expression.atomic;
 
 import expression.ExpressionTests;
-import expression.atomic.Atomic;
+import expression.atomic.AtomicExpression;
 
-public abstract class AtomicTests<E extends Atomic> extends ExpressionTests<E> {}
+public abstract class AtomicTests<E extends AtomicExpression> extends ExpressionTests<E> {}
