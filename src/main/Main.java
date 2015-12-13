@@ -25,9 +25,9 @@ public class Main {
                 e2.printStackTrace();
             }
         }
-        log(e.print(new PostfixPrinter(), env) + "	= " + result);
-        log(e.print(new PrefixPrinter(), env) + "	= " + result);
-        log(e.print(new InfixPrinter(), env) + "	= " + result);
+        log(e.print(new PostfixPrinter()) + "	= " + result);
+        log(e.print(new PrefixPrinter()) + "	= " + result);
+        log(e.print(new InfixPrinter()) + "	= " + result);
     }
 
     private static Expression createExpression(Environment env) {

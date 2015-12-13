@@ -9,30 +9,35 @@ import expression.atomic.*;
 public class StandardEvaluator implements Visitor {
 
     protected int result;
+    protected Environment env;
 
     public int getResult() {
         return result;
     }
 
+    public void setEnvironment(Environment env) {
+        this.env = env;
+    }
+
     @Override
-    public void visitLiteral(Literal expression, Environment env) {
+    public void visitLiteral(Literal expression) {
         result = expression.getValue();
     }
 
     @Override
-    public void visitVariable(Variable expression, Environment env) {
+    public void visitVariable(Variable expression) {
         result = env.getValue(expression).getValue();
     }
 
     @Override
-    public void visitBinary(BinaryExpression expression, Environment env) {
+    public void visitBinary(BinaryExpression expression) {
         int x = expression.getLeftOperand().eval(this, env);
         int y = expression.getRightOperand().eval(this, env);
         result = expression.compute(x, y);
     }
 
     @Override
-    public void visitIf(If expression, Environment env) {
+    public void visitIf(If expression) {
         if (expression.getCondition().eval(this, env) == 1) {
             result = expression.getInstruction1().eval(this, env);
         } else {

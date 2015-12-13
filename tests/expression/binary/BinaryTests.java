@@ -10,10 +10,10 @@ public abstract class BinaryTests<E extends BinaryExpression> extends Expression
     public void testPrint() {
         String x, y, symbol, expected, actual;
         symbol = expressionEquals10.getSymbol();
-        x = expressionEquals10.getLeftOperand().print(printer, env);
-        y = expressionEquals10.getRightOperand().print(printer, env);
+        x = expressionEquals10.getLeftOperand().print(printer);
+        y = expressionEquals10.getRightOperand().print(printer);
         expected = "(" + x + " " + symbol + " " + y + ")";
-        actual = expressionEquals10.print(printer, env);
+        actual = expressionEquals10.print(printer);
         assertEquals(expected, actual);
     }
 }

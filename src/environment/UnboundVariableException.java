@@ -7,7 +7,7 @@ public class UnboundVariableException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    public UnboundVariableException(Variable var, Environment env) {
-        super("Variable \"" + var.print(new InfixPrinter(), env) + "\" is not bound.");
+    public UnboundVariableException(Variable var) {
+        super("Variable \"" + var.print(new InfixPrinter()) + "\" is not bound.");
     }
 }

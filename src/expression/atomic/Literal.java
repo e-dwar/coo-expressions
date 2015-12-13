@@ -1,7 +1,6 @@
 package expression.atomic;
 
 import visitor.Visitor;
-import environment.Environment;
 
 public class Literal extends AtomicExpression {
 
@@ -16,7 +15,7 @@ public class Literal extends AtomicExpression {
     }
 
     @Override
-    public void accept(Visitor visitor, Environment env) {
-        visitor.visitLiteral(this, env);
+    public void accept(Visitor visitor) {
+        visitor.visitLiteral(this);
     }
 }

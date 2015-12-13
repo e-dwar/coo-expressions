@@ -1,7 +1,6 @@
 package visitor.printer;
 
 import visitor.Visitor;
-import environment.Environment;
 import expression.atomic.Literal;
 import expression.atomic.Variable;
 import expression.conditional.If;
@@ -15,21 +14,21 @@ public abstract class Printer implements Visitor {
     }
 
     @Override
-    public void visitIf(If expression, Environment env) {
+    public void visitIf(If expression) {
         result = "(";
-        result += "if " + expression.getCondition().print(this, env);
-        result += " then " + expression.getInstruction1().print(this, env);
-        result += " else " + expression.getInstruction2().print(this, env);
+        result += "if " + expression.getCondition().print(this);
+        result += " then " + expression.getInstruction1().print(this);
+        result += " else " + expression.getInstruction2().print(this);
         result += ")";
     }
 
     @Override
-    public void visitLiteral(Literal expression, Environment env) {
+    public void visitLiteral(Literal expression) {
         result = expression.getValue() + "";
     }
 
     @Override
-    public void visitVariable(Variable expression, Environment env) {
+    public void visitVariable(Variable expression) {
         result = expression.getName();
     }
 }

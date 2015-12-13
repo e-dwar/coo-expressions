@@ -1,7 +1,6 @@
 package expression.binary;
 
 import visitor.Visitor;
-import environment.Environment;
 import expression.Expression;
 
 public abstract class BinaryExpression extends Expression {
@@ -31,7 +30,7 @@ public abstract class BinaryExpression extends Expression {
     }
 
     @Override
-    public void accept(Visitor visitor, Environment env) {
-        visitor.visitBinary(this, env);
+    public void accept(Visitor visitor) {
+        visitor.visitBinary(this);
     }
 }

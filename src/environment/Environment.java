@@ -20,7 +20,7 @@ public class Environment {
         if (isBound(var)) {
             return vars.get(var);
         } else {
-            throw new UnboundVariableException(var, this);
+            throw new UnboundVariableException(var);
         }
     }
 

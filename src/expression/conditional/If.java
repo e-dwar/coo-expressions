@@ -1,7 +1,6 @@
 package expression.conditional;
 
 import visitor.Visitor;
-import environment.Environment;
 import expression.Expression;
 
 public class If extends Expression {
@@ -29,8 +28,8 @@ public class If extends Expression {
     }
 
     @Override
-    public void accept(Visitor visitor, Environment env) {
-        visitor.visitIf(this, env);
+    public void accept(Visitor visitor) {
+        visitor.visitIf(this);
     }
 
 }

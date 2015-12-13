@@ -26,6 +26,6 @@ public class VariableTests extends AtomicTests<Variable> {
 
     @Override
     public void testPrint() {
-        assertEquals("x", expressionEquals10.print(printer, env));
+        assertEquals("x", expressionEquals10.print(printer));
     }
 }

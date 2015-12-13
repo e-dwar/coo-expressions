@@ -1,14 +1,13 @@
 package visitor.evaluator;
 
-import environment.Environment;
 import expression.atomic.Variable;
 
 public class BulletProofEvaluator extends StandardEvaluator {
 
     @Override
-    public void visitVariable(Variable expression, Environment env) {
+    public void visitVariable(Variable expression) {
         if (env.isBound(expression)) {
-            super.visitVariable(expression, env);
+            super.visitVariable(expression);
         } else {
             result = 0;
         }
