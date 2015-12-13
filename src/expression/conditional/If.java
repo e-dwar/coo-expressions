@@ -28,8 +28,8 @@ public class If extends Expression {
     }
 
     @Override
-    public void accept(Visitor visitor) {
-        visitor.visitIf(this);
+    public <T> T accept(Visitor<T> visitor) {
+        return visitor.visitIf(this);
     }
 
 }

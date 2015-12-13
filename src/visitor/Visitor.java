@@ -4,13 +4,13 @@ import expression.atomic.*;
 import expression.binary.BinaryExpression;
 import expression.conditional.If;
 
-public interface Visitor {
+public interface Visitor<T> {
 
-    public void visitLiteral(Literal expression);
+    public T visitLiteral(Literal expression);
 
-    public void visitVariable(Variable expression);
+    public T visitVariable(Variable expression);
 
-    public void visitBinary(BinaryExpression expression);
+    public T visitBinary(BinaryExpression expression);
 
-    public void visitIf(If expression);
+    public T visitIf(If expression);
 }

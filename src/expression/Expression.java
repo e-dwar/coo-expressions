@@ -7,16 +7,14 @@ import environment.Environment;
 
 public abstract class Expression {
 
-    public abstract void accept(Visitor visitor);
+    public abstract <T> T accept(Visitor<T> visitor);
 
     public String print(Printer printer) {
-        accept(printer);
-        return printer.getResult();
+        return accept(printer);
     }
 
     public int eval(StandardEvaluator evaluator, Environment env) {
         evaluator.setEnvironment(env);
-        accept(evaluator);
-        return evaluator.getResult();
+        return accept(evaluator);
     }
 }

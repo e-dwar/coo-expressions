@@ -15,7 +15,7 @@ public class Variable extends AtomicExpression {
     }
 
     @Override
-    public void accept(Visitor visitor) {
-        visitor.visitVariable(this);
+    public <T> T accept(Visitor<T> visitor) {
+        return visitor.visitVariable(this);
     }
 }

@@ -30,7 +30,7 @@ public abstract class BinaryExpression extends Expression {
     }
 
     @Override
-    public void accept(Visitor visitor) {
-        visitor.visitBinary(this);
+    public <T> T accept(Visitor<T> visitor) {
+        return visitor.visitBinary(this);
     }
 }

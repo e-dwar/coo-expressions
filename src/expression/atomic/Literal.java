@@ -15,7 +15,7 @@ public class Literal extends AtomicExpression {
     }
 
     @Override
-    public void accept(Visitor visitor) {
-        visitor.visitLiteral(this);
+    public <T> T accept(Visitor<T> visitor) {
+        return visitor.visitLiteral(this);
     }
 }

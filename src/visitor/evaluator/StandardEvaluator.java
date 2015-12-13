@@ -6,42 +6,37 @@ import expression.binary.BinaryExpression;
 import expression.conditional.If;
 import expression.atomic.*;
 
-public class StandardEvaluator implements Visitor {
+public class StandardEvaluator implements Visitor<Integer> {
 
-    protected int result;
     protected Environment env;
-
-    public int getResult() {
-        return result;
-    }
 
     public void setEnvironment(Environment env) {
         this.env = env;
     }
 
     @Override
-    public void visitLiteral(Literal expression) {
-        result = expression.getValue();
+    public Integer visitLiteral(Literal expression) {
+        return expression.getValue();
     }
 
     @Override
-    public void visitVariable(Variable expression) {
-        result = env.getValue(expression).getValue();
+    public Integer visitVariable(Variable expression) {
+        return env.getValue(expression).getValue();
     }
 
     @Override
-    public void visitBinary(BinaryExpression expression) {
+    public Integer visitBinary(BinaryExpression expression) {
         int x = expression.getLeftOperand().eval(this, env);
         int y = expression.getRightOperand().eval(this, env);
-        result = expression.compute(x, y);
+        return expression.compute(x, y);
     }
 
     @Override
-    public void visitIf(If expression) {
+    public Integer visitIf(If expression) {
         if (expression.getCondition().eval(this, env) == 1) {
-            result = expression.getInstruction1().eval(this, env);
+            return expression.getInstruction1().eval(this, env);
         } else {
-            result = expression.getInstruction2().eval(this, env);
+            return expression.getInstruction2().eval(this, env);
         }
     }
 }

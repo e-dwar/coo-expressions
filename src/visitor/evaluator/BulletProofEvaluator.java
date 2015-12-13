@@ -5,11 +5,11 @@ import expression.atomic.Variable;
 public class BulletProofEvaluator extends StandardEvaluator {
 
     @Override
-    public void visitVariable(Variable expression) {
+    public Integer visitVariable(Variable expression) {
         if (env.isBound(expression)) {
-            super.visitVariable(expression);
+            return super.visitVariable(expression);
         } else {
-            result = 0;
+            return 0;
         }
     }
 }
