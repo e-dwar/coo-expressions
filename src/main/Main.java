@@ -1,6 +1,7 @@
 package main;
 
 import environment.*;
+import evaluator.Standard;
 import expression.*;
 import expression.atomic.*;
 import expression.binary.*;
@@ -8,7 +9,11 @@ import expression.conditional.If;
 
 public class Main {
 
-	public static void main (String[] args) {
+  public static void main(String[] args) throws UnboundVariable {
+    Binary binary = new Plus(new Literal(3), new Literal(5));
+    new Standard().visit(binary, new Environment());
+  }
+	public static void main2 (String[] args) {
 		int result = 0;
 		Environment env = new Environment();
 		Expression e = createExpression(env);
