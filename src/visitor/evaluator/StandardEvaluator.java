@@ -2,37 +2,61 @@ package visitor.evaluator;
 
 import visitor.Visitor;
 import environment.Environment;
-import expression.binary.BinaryExpression;
+import expression.binary.*;
 import expression.conditional.If;
 import expression.atomic.*;
 
 public class StandardEvaluator implements Visitor<Integer> {
 
-    protected Environment env;
+	protected Environment env;
 
-    public void setEnvironment(Environment env) {
-        this.env = env;
-    }
+	public void setEnvironment(Environment env) {
+		this.env = env;
+	}
 
-    public Integer visitLiteral(Literal expression) {
-        return expression.getValue();
-    }
+	public Integer visitLiteral(Literal expression) {
+		return expression.getValue();
+	}
 
-    public Integer visitVariable(Variable expression) {
-        return env.getValue(expression).getValue();
-    }
+	public Integer visitVariable(Variable expression) {
+		return env.getValue(expression).getValue();
+	}
 
-    public Integer visitBinary(BinaryExpression expression) {
-        int x = expression.getLeftOperand().eval(this, env);
-        int y = expression.getRightOperand().eval(this, env);
-        return expression.compute(x, y);
-    }
+	public Integer visitPlus(Plus expression) {
+		int x = expression.getLeftOperand().accept(this);
+		int y = expression.getRightOperand().accept(this);
+		return x + y;
+	}
 
-    public Integer visitIf(If expression) {
-        if (expression.getCondition().eval(this, env) == 1) {
-            return expression.getInstruction1().eval(this, env);
-        } else {
-            return expression.getInstruction2().eval(this, env);
-        }
-    }
+	public Integer visitMinus(Minus expression) {
+		int x = expression.getLeftOperand().accept(this);
+		int y = expression.getRightOperand().accept(this);
+		return x - y;
+	}
+
+	public Integer visitMult(Mult expression) {
+		int x = expression.getLeftOperand().accept(this);
+		int y = expression.getRightOperand().accept(this);
+		return x * y;
+	}
+
+	public Integer visitDiv(Div expression) {
+		int x = expression.getLeftOperand().accept(this);
+		int y = expression.getRightOperand().accept(this);
+		return x / y;
+	}
+
+	public Integer visitEquality(Equality expression) {
+		int x = expression.getLeftOperand().accept(this);
+		int y = expression.getRightOperand().accept(this);
+		return x == y ? 1 : 0;
+	}
+
+	public Integer visitIf(If expression) {
+		if (expression.getCondition().accept(this) == 1) {
+			return expression.getInstruction1().accept(this);
+		} else {
+			return expression.getInstruction2().accept(this);
+		}
+	}
 }

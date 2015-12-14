@@ -1,20 +1,18 @@
 package expression;
 
 import visitor.Visitor;
-import visitor.printer.Printer;
 import visitor.evaluator.StandardEvaluator;
-import environment.Environment;
+import visitor.printer.Printer;
 
 public abstract class Expression {
 
-    public abstract <T> T accept(Visitor<T> visitor);
-
-    public String print(Printer printer) {
-        return accept(printer);
-    }
-
-    public int eval(StandardEvaluator evaluator, Environment env) {
-        evaluator.setEnvironment(env);
-        return accept(evaluator);
-    }
+	public abstract <T> T accept(Visitor<T> visitor);
+	
+	public int eval(StandardEvaluator evaluator) {
+		return this.accept(evaluator);
+	}
+	
+	public String print(Printer printer) {
+		return this.accept(printer);
+	}
 }
