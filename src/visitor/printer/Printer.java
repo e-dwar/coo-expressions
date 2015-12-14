@@ -3,21 +3,21 @@ package visitor.printer;
 import visitor.Visitor;
 import expression.atomic.Literal;
 import expression.atomic.Variable;
+import expression.binary.BinaryExpression;
 import expression.conditional.If;
 
 public abstract class Printer implements Visitor<String> {
 
-    @Override
+	public abstract String visitBinary(BinaryExpression expression);
+	
     public String visitLiteral(Literal expression) {
         return expression.getValue() + "";
     }
 
-    @Override
     public String visitVariable(Variable expression) {
         return expression.getName();
     }
 
-    @Override
     public String visitIf(If expression) {
         String result = "(";
         result += "if " + expression.getCondition().print(this);

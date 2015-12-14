@@ -14,24 +14,20 @@ public class StandardEvaluator implements Visitor<Integer> {
         this.env = env;
     }
 
-    @Override
     public Integer visitLiteral(Literal expression) {
         return expression.getValue();
     }
 
-    @Override
     public Integer visitVariable(Variable expression) {
         return env.getValue(expression).getValue();
     }
 
-    @Override
     public Integer visitBinary(BinaryExpression expression) {
         int x = expression.getLeftOperand().eval(this, env);
         int y = expression.getRightOperand().eval(this, env);
         return expression.compute(x, y);
     }
 
-    @Override
     public Integer visitIf(If expression) {
         if (expression.getCondition().eval(this, env) == 1) {
             return expression.getInstruction1().eval(this, env);
